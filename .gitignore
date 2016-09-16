@@ -1,0 +1,10 @@
+## python files to ignore
+*.md
+**/production/*
+**/local_settings.py
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
