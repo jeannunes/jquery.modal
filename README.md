@@ -1,12 +1,12 @@
-# jquery.modal
+# JQuery Modal
 JQuery Modal is a JQuery Plugin wich allows you to transform your html elements into modal windows.
 
 ## Instalation
 JQuery Modal requires JQuery to work properly. To install JQuery Modal into your page, simply load the .js script file tag inside the tag body of your html.
 ```
 <body>
-...
-<script src='jquery.modal.latest.js' type='text/javascript'></script>
+	...
+	<script src='jquery.modal.latest.js' type='text/javascript'></script>
 </body>
 ```
 
