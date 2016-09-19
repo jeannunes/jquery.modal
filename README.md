@@ -21,7 +21,20 @@ First load the file `jquery.modal.css`
 
 ## Usage
 
-JQuery Modal doesn't require any previous configurations. You can use it as it is by default. Simply call `$(element).modal();`, where **element** is the element you want to turn into a modal window.
+JQuery Modal doesn't require any previous configurations. You can use it as it is by default. Simply add the attribute `data-modal` with a reference to your modal element. For example:
+```
+<a data-modal='#example'>Modal</a>
+<div class='modal' id='example'>
+  <div class='modal-title'>
+    <div class='modal-title-content'>Titulo</div>
+    <a class='modal-close'>X</a>
+  </div>
+  <div class='modal-body'>
+    Content comes here
+  </div>
+</div>
+```
+In this example, when the Modal button is clicked, the window shows up.
 
 ## Releases
 
