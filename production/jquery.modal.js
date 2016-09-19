@@ -1,6 +1,11 @@
 (function($) {
 
-// Modal
+$(".modal").hide();
+
+$("*[data-modal]").click(function(){
+	var m = $(this).data('modal');
+	$(m).modal('open');
+});
 
 $.fn.modal = function(method, options) {
 
@@ -13,20 +18,23 @@ $.fn.modal = function(method, options) {
 			left : ($(window).height() - $(obj).height()) / 2,
 			position: "fixed",
 			background: true,
-			backgroundColor: "RGA(0,0,0,0.8)",
+			backgroundColor: "RGBA(0,0,0,0.8)",
 			backgroundClose: true
 		};
 
 	var settings = $.extend( {}, defaults, options ),
 		background = $("<div></div>");
 
-	$(background).css({
+	$(background)
+  .addClass('modal-background')
+  .css({
 		"background-color": settings.backgroundColor,
 		"position": "fixed",
 		"top": "0px",
 		"left": "0px",
 		"right": "0px",
 		"bottom": "0px",
+    "z-index": 1000
 	});
 
 	$(this)
@@ -37,12 +45,12 @@ $.fn.modal = function(method, options) {
 			left: settings.left,
 			width: settings.width,
 			height: settings.height,
-		})
-		.draggable();
+      "z-index": 2000
+		});
 		
 		if (settings.background) {$(this).before(background);}
 	
-		$(".close-modal", this).click(function(){
+		$(".modal-close", this).click(function(){
 			if (settings.background) {$(background).remove();}
 			$(obj).hide();
 		});
@@ -56,3 +64,5 @@ $.fn.modal = function(method, options) {
 
 	return this;
 };
+
+}( jQuery ));
