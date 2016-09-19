@@ -13,7 +13,8 @@ $.fn.modal = function(method, options) {
 			left : ($(window).height() - $(obj).height()) / 2,
 			position: "fixed",
 			background: true,
-			backgroundColor: "RGA(0,0,0,0.8)"
+			backgroundColor: "RGA(0,0,0,0.8)",
+			backgroundClose: true
 		};
 
 	var settings = $.extend( {}, defaults, options ),
@@ -38,12 +39,20 @@ $.fn.modal = function(method, options) {
 			height: settings.height,
 		})
 		.draggable();
+		
 		if (settings.background) {$(this).before(background);}
 	
-	$(".close-modal", this).click(function(){
-		if (settings.background) {$(background).remove();}
-		$(obj).hide();
-	});
+		$(".close-modal", this).click(function(){
+			if (settings.background) {$(background).remove();}
+			$(obj).hide();
+		});
+		
+		if (settings.backgroundClose) {
+			$(background).click(function(){
+				if (settings.background) {$(background).remove();}
+				$(obj).hide();
+			});
+		}
 
 	return this;
 };
