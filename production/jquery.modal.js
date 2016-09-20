@@ -47,7 +47,7 @@ $.fn.modal = function(method, options = null) {
 			height: settings.height,
       "z-index": 2000
 		})
-		.draggable();
+		.draggable({ handle: ".modal-title" });
 		
 		if (settings.background) {$(this).before(background);}
 	
