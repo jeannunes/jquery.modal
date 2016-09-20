@@ -7,7 +7,7 @@ $("*[data-modal]").click(function(){
 	$(m).modal('open');
 });
 
-$.fn.modal = function(method) {
+$.fn.modal = function(method, options) {
 
 	var obj = $(this);
 	
@@ -22,7 +22,7 @@ $.fn.modal = function(method) {
 			backgroundClose: true
 		};
 
-	var settings = $.extend( {}, defaults, $(this).data() ),
+	var settings = $.extend( {}, defaults, options?options:$(this).data() ),
 		background = $("<div></div>");
 
 	$(background)
