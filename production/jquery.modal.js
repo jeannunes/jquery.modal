@@ -7,7 +7,7 @@ $("*[data-modal]").click(function(){
 	$(m).modal('open');
 });
 
-$.fn.modal = function(method, options) {
+$.fn.modal = function(method, options = null) {
 
 	var obj = $(this);
 	
