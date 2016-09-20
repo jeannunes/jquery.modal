@@ -47,7 +47,10 @@ $.fn.modal = function(method, options = null) {
 			height: settings.height,
       "z-index": 2000
 		})
-		.draggable({ handle: ".modal-title" });
+		.draggable({
+			handle: ".modal-title",
+			cursor: "crosshair"
+		});
 		
 		if (settings.background) {$(this).before(background);}
 	
