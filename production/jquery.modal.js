@@ -11,6 +11,7 @@ $.fn.modal = function(method, options = null) {
 
 	var obj = $(this);
 	
+	if (method == "open") {
 	var defaults = {
 			width : $(obj).width(),
 			height : $(obj).height(),
@@ -63,21 +64,34 @@ $.fn.modal = function(method, options = null) {
 	
 	settings.afterOpen();
 	
+	function close(direct = false){
+		settings.beforeClose();
+		if (direct) {
+			if ($(obj).prev("modal-background")) {
+				$(obj).prev("modal-background").remove();
+			}			
+		} else {
+			if (settings.background) {
+				$(background).remove();
+			}
+		}
+		$(obj).hide();
+		settings.afterOpen();
+	}
+	
 		$(settings.close, this).click(function(){
-			settings.beforeClose();
-			if (settings.background) {$(background).remove();}
-			$(obj).hide();
-			settings.afterOpen();
+			close();
 		});
 		
 		if (settings.backgroundClose) {
 			$(background).click(function(){
-				settings.beforeClose();
-				if (settings.background) {$(background).remove();}
-				$(obj).hide();
-				settings.afterClose();
+				close();
 			});
-		}
+		}	
+	} // Open
+	else if (method == "close") {
+		close();
+	}
 
 	return this;
 };
