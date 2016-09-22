@@ -12,8 +12,8 @@ $.fn.modal = function(method, options = null) {
 	var obj = $(this);
 	
 	var defaults = {
-			width : 380,
-			height : 240,
+			width : $(obj).width(),
+			height : $(obj).height(),
 			top : ($(window).width() - $(obj).width()) / 2,
 			left : ($(window).height() - $(obj).height()) / 2,
 			position: "fixed",
