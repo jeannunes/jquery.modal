@@ -20,7 +20,11 @@ $.fn.modal = function(method, options = null) {
 			background: true,
 			backgroundColor: "RGBA(0,0,0,0.8)",
 			backgroundClose: true,
-			close: ".modal-close"
+			close: ".modal-close",
+			beforeOpen: function(){},
+			afterOpen: function(){},
+			beforeClose: function(){},
+			afterClose: function(){}
 		};
 
 	var settings = $.extend( {}, defaults, options?options:$(this).data() ),
@@ -37,6 +41,8 @@ $.fn.modal = function(method, options = null) {
 		"bottom": "0px",
     "z-index": 1000
 	});
+
+	settings.beforeOpen();
 
 	$(this)
 		.show()
@@ -55,15 +61,21 @@ $.fn.modal = function(method, options = null) {
 		
 		if (settings.background) {$(this).before(background);}
 	
+	settings.afterOpen();
+	
 		$(settings.close, this).click(function(){
+			settings.beforeClose();
 			if (settings.background) {$(background).remove();}
 			$(obj).hide();
+			settings.afterOpen();
 		});
 		
 		if (settings.backgroundClose) {
 			$(background).click(function(){
+				settings.beforeClose();
 				if (settings.background) {$(background).remove();}
 				$(obj).hide();
+				settings.afterClose();
 			});
 		}
 
