@@ -4,7 +4,7 @@ $(".modal").hide();
 
 $("*[data-modal]").click(function(){
 	var m = $(this).data('modal');
-	$(m).modal('open');
+	$(m).modal('open',$(m).data());
 });
 
 $.fn.modal = function(method, options = null) {
@@ -19,7 +19,8 @@ $.fn.modal = function(method, options = null) {
 			position: "fixed",
 			background: true,
 			backgroundColor: "RGBA(0,0,0,0.8)",
-			backgroundClose: true
+			backgroundClose: true,
+			close: ".modal-close"
 		};
 
 	var settings = $.extend( {}, defaults, options?options:$(this).data() ),
@@ -54,7 +55,7 @@ $.fn.modal = function(method, options = null) {
 		
 		if (settings.background) {$(this).before(background);}
 	
-		$(".modal-close", this).click(function(){
+		$(settings.close, this).click(function(){
 			if (settings.background) {$(background).remove();}
 			$(obj).hide();
 		});
