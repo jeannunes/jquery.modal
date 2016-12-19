@@ -1,10 +1,10 @@
 (function($) {
 	$(".modal").hide();
 	$("*[data-modal]").click(function() {
-		var m = $(this).data('modal');
-		$(m).modal('open', $(m).data());
+		var m = $(this).attr('href');
+		$(m).modal('open', $(this).data('modal'));
 	});
-	$.fn.modal = function(method, options = null) {
+	$.fn.modal = function(method, options) {
 		var obj = $(this);
 		var defaults = {
 			width: $(obj).width(),
@@ -23,6 +23,9 @@
 		};
 		
 		var settings = $.extend({}, defaults, options);
+		
+		alert(options);
+		
 		if (method == "open") {
 			
 			if (settings.background) {
