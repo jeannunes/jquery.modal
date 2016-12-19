@@ -1,35 +1,39 @@
-(function($) {
-	$(".modal").hide();
-	$("*[data-modal]").click(function() {
-		var m = $(this).attr('href');
-		$(m).modal('open', $(this).data('modal'));
-	});
-	$.fn.modal = function(method, options) {
-		var obj = $(this);
-		var defaults = {
-			width: $(obj).width(),
-			height: $(obj).height(),
-			left: ($(window).width() - $(obj).width()) / 2,
-			top: ($(window).height() - $(obj).height()) / 2,
-			position: "fixed",
-			background: true,
-			backgroundColor: "RGBA(0,0,0,0.8)",
-			backgroundClose: true,
-			close: ".modal-close",
-			beforeOpen: function() {},
-			afterOpen: function() {},
-			beforeClose: function() {},
-			afterClose: function() {}
-		};
-		
-		var settings = $.extend({}, defaults, options);
-		
-		if (method == "open") {
+(function( $ ){
+
+    var methods = {
+		settings: null,
+        init : function(options) {
 			
-			if (settings.background) {
+			var object = $(this).attr("href"),
+					defaults = {
+						width: $(object).width(),
+						height: $(object).height(),
+						left: ($(window).width() - $(object).width()) / 2,
+						top: ($(window).height() - $(object).height()) / 2,
+						position: "fixed",
+						background: true,
+						backgroundColor: "RGBA(0,0,0,0.8)",
+						backgroundClose: true,
+						close: ".modal-close",
+						beforeOpen: function() {},
+						afterOpen: function() {},
+						beforeClose: function() {},
+						afterClose: function() {}
+					};
+				
+			methods.settings = $.extend({}, defaults, options);
+				
+			$(this).click(function(e){
+				$(this).modal("open");
+			});
+			
+        },
+        open : function( ) { 
+		
+			if (methods.settings.background) {
 				var background = $("<div></div>");
 				$(background).addClass('modal-background').css({
-					"background-color": settings.backgroundColor,
+					"background-color": methods.settings.backgroundColor,
 					"position": "fixed",
 					"top": "0px",
 					"left": "0px",
@@ -39,49 +43,58 @@
 				});
 			}
 			
-			settings.beforeOpen();
+			methods.settings.beforeOpen();
 			
-			$(this).show().css({
-				position: settings.position,
-				top: settings.top + "px",
-				left: settings.left + "px",
-				width: settings.width,
-				height: settings.height,
+			var obj = $(this), modal = $(obj).attr("href");
+			
+			$(modal).show().css({
+				position: methods.settings.position,
+				top: methods.settings.top + "px",
+				left: methods.settings.left + "px",
+				width: methods.settings.width,
+				height: methods.settings.height,
 				"z-index": 2000
 			});
 			
-			if (settings.background) {
-				$(this).before(background);
+			if (methods.settings.background) {
+				$(modal).before(background);
 			}
 			
-			settings.afterOpen();
-
-			function close(direct = false) {
-				settings.beforeClose();
-				if (direct) {
-					if ($(obj).prev("modal-background")) {
-						$(obj).prev("modal-background").remove();
-					}
-				} else {
-					if (settings.background) {
-						$(background).remove();
-					}
-				}
-				$(obj).hide();
-				settings.afterOpen();
-			}
-			$(settings.close, this).click(function() {
-				close();
+			$(methods.settings.close, modal).click(function(){
+				$(obj).modal("close");
 			});
-			if (settings.backgroundClose) {
-				$(background).click(function() {
-					close();
-				});
-			}
-		} // Open
-		else if (method == "close") {
-			close();
-		}
-		return this;
-	};
-}(jQuery));
+			
+			$(background).click(function(){
+				$(obj).modal("close");
+			});
+			
+			methods.settings.afterOpen();
+
+		},// IS
+        close : function() {
+			var obj = $(this), modal = $(obj).attr("href");
+			
+			$(modal).prev(".modal-background").remove();
+			$(modal).hide();
+			
+		},
+    };
+
+	// Define the names of the methods
+    $.fn.modal = function(methodOrOptions) {
+        if ( methods[methodOrOptions] ) {
+            return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
+            // Default to "init"
+            return methods.init.apply( this, arguments );
+        } else {
+            $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.tooltip' );
+        }    
+    };
+
+	$(".modal").hide();
+	$("*[data-modal]").each(function(){
+		$(this).modal($(this).data("modal"));
+	});
+	
+})( jQuery );
