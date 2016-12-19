@@ -1,36 +1,53 @@
 <html>
-  <head>
-  <link rel='stylesheet' type='text/css' href='jquery.modal.css'>
-  <style>
-  body {
-  font-family: Trebuchet MS;
-  font-size: 14px;
-  }
-  #example {
-  width: 480px;
-  height: 340px;
-  }
-  </style>
-  </head>
-  <body>
-  
-  <h1>JQuery Modal</h1>
-  <p>
-	Click here to open the <a data-modal='#example'>Modal</a>
-	</p>
-  
-    <div class='modal' id='example'>
-      <div class='modal-title'>
-        <div class='modal-title-content'>Titulo</div>
-        <a class='modal-close'>X</a>
-      </div>
-      <div class='modal-body'>
-        Content comes here
-		<a onClick="window.alert('nhai');">Run Script</a>
-      </div>
-    </div>
-    
-    <script src='https://code.jquery.com/jquery-3.1.0.slim.min.js'></script>
-    <script src='jquery.modal.js'></script>
-  </body>
+
+	<head>
+		<link rel='stylesheet' type='text/css' href='jquery.modal.css'>
+		<style>
+			body {
+				font-family: Trebuchet MS;
+				font-size: 14px;
+			}
+			
+			#example {
+				width: 480px;
+				height: 340px;
+			}
+			
+			.modal .modal-title {
+				background: green!important;
+				color: white;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			.modal .modal-body {
+				padding: 15px;
+				box-sizing: border-box;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<h1>JQuery Modal</h1>
+		<p>
+			Click here to open the <a data-modal='#example'>Modal</a>
+		</p>
+
+		<div class='modal' id='example'>
+			<div class='modal-title'>
+				<div class='modal-title-content'>Titulo</div>
+				<a class='modal-close'>X</a>
+			</div>
+			<div class='modal-body'>
+				<p>Content comes here</p>
+				<p><a onClick="window.alert('it works');">Script Example</a></p>
+				<p><script>document.write("I was made by scripts");</script></p>
+			</div>
+		</div>
+
+		<script src='https://code.jquery.com/jquery-3.1.0.slim.min.js'></script>
+		<script src='jquery.modal.js'></script>
+	</body>
+
 </html>
