@@ -24,8 +24,6 @@
 		
 		var settings = $.extend({}, defaults, options);
 		
-		alert(options);
-		
 		if (method == "open") {
 			
 			if (settings.background) {
