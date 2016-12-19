@@ -9,8 +9,8 @@
 		var defaults = {
 			width: $(obj).width(),
 			height: $(obj).height(),
-			top: ($(window).width() - $(obj).width()) / 2,
-			left: ($(window).height() - $(obj).height()) / 2,
+			left: ($(window).width() - $(obj).width()) / 2,
+			top: ($(window).height() - $(obj).height()) / 2,
 			position: "fixed",
 			background: true,
 			backgroundColor: "RGBA(0,0,0,0.8)",
@@ -21,6 +21,7 @@
 			beforeClose: function() {},
 			afterClose: function() {}
 		};
+		
 		var settings = $.extend({}, defaults, options);
 		if (method == "open") {
 			
@@ -38,16 +39,14 @@
 			}
 			
 			settings.beforeOpen();
+			
 			$(this).show().css({
 				position: settings.position,
-				top: settings.top,
-				left: settings.left,
+				top: settings.top + "px",
+				left: settings.left + "px",
 				width: settings.width,
 				height: settings.height,
 				"z-index": 2000
-			}).draggable({
-				handle: ".modal-title",
-				cursor: "crosshair"
 			});
 			
 			if (settings.background) {
