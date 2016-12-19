@@ -9,8 +9,8 @@
 			}
 			
 			#example {
-				width: 480px;
-				height: 340px;
+				width: 800px;
+				height: 600px;
 			}
 			
 			.modal .modal-title {
@@ -37,11 +37,10 @@
 		<div class='modal' id='example'>
 			<div class='modal-title'>
 				<div class='modal-title-content'>Titulo</div>
-				<a class='modal-close'>X</a>
 			</div>
 			<div class='modal-body'>
 				<p>Content comes here</p>
-				<p><a onClick="window.alert('it works');">Script Example</a></p>
+				<p><a href='#ClickMe' onClick="window.alert('it works');return false;">Script Example</a></p>
 				<p><script>document.write("I was made by scripts");</script></p>
 			</div>
 		</div>
