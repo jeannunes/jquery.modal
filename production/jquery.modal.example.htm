@@ -1,7 +1,24 @@
 <html>
   <head>
+  <link rel='stylesheet' type='text/css' href='jquery.modal.css'>
+  <style>
+  body {
+  font-family: Trebuchet MS;
+  font-size: 14px;
+  }
+  #example {
+  width: 480px;
+  height: 340px;
+  }
+  </style>
   </head>
   <body>
+  
+  <h1>JQuery Modal</h1>
+  <p>
+	Click here to open the <a data-modal='#example'>Modal</a>
+	</p>
+  
     <div class='modal' id='example'>
       <div class='modal-title'>
         <div class='modal-title-content'>Titulo</div>
@@ -9,9 +26,10 @@
       </div>
       <div class='modal-body'>
         Content comes here
+		<a onClick="window.alert('nhai');">Run Script</a>
       </div>
     </div>
-    <a data-modal='#example'>Modal</a>
+    
     <script src='https://code.jquery.com/jquery-3.1.0.slim.min.js'></script>
     <script src='jquery.modal.js'></script>
   </body>
