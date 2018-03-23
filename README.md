@@ -5,13 +5,14 @@ JQuery Modal is a JQuery Plugin wich allows you to transform your html elements 
 ## Instalation
 
 JQuery Modal requires JQuery to work properly. If you want it working 120%, you have to add some elements to your code.
-First load the file `jquery.modal.css`
+First load the file `jquery.modal.css`. You can do this by placing the `<link>` tag insie your `<head>` tag.
 ```
 <head>
 	...
 	<link rel='stylesheet' type='text/css' href='jquery.modal.css'/>
 </head>
 ```
+Then, place the script after your `jquery`.
 ```
 <body>
 	...
